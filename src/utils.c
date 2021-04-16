@@ -89,7 +89,7 @@ log_to_postgres(PyObject *self, PyObject *args, PyObject *kwargs)
 	}
 	hint = PyDict_GetItemString(kwargs, "hint");
 	detail = PyDict_GetItemString(kwargs, "detail");
-	if (errstart(severity, __FILE__, __LINE__, PG_FUNCNAME_MACRO, TEXTDOMAIN))
+	if (errstart(severity, TEXTDOMAIN))
 	{
 		errmsg("%s", message);
 		if (hint != NULL && hint != Py_None)
@@ -104,7 +104,7 @@ log_to_postgres(PyObject *self, PyObject *args, PyObject *kwargs)
 		}
 		Py_DECREF(args);
 		Py_DECREF(kwargs);
-		errfinish(0);
+		errfinish(__FILE__, __LINE__, PG_FUNCNAME_MACRO);
 	}
 	else
 	{

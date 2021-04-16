@@ -26,9 +26,9 @@
 /* Data structures */
 
 #define C_LOG(...) do { \
-	errstart(NOTICE, __FILE__, __LINE__, PG_FUNCNAME_MACRO, TEXTDOMAIN); \
+	errstart(NOTICE, TEXTDOMAIN); \
 	errmsg(__VA_ARGS__); \
-	errfinish(0); \
+	errfinish(__FILE__, __LINE__, PG_FUNCNAME_MACRO); \
 } while (0)
 
 
